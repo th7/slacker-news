@@ -1,0 +1,10 @@
+<div class="posts"
+  <% Post.all.sort {|a,b| a.updated_at <=> b.updated_at}.each do |post| %>
+    <div>
+      <div><a href="posts/<%= post.id %>"><%= post.title %></a></div>
+      <div>Posted by: <%= post.user.username %></div><br>
+    </div>
+  <% end %>
+</div>
+
+erb :_edit_post
