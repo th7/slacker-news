@@ -1,0 +1,29 @@
+<h3><%=@post.title%></h3>
+<div class="posts" id="post_id<%= @post.id %>">
+
+  <div>
+    <div><%= @post.text %></div>
+    <div>Posted by: <%= @post.user.username %></div><br>
+  </div>
+
+  <a class="reply" href="#">reply</a>
+  <div class="reply hidden" id="reply<%= @post.id %>">
+    <%= erb :_edit_post %>
+  </div>
+
+  <hr>
+
+  <% if @post.posts.any? && !@show_replies %>
+    <a class="get-replies" href="/posts/<%=@post.id%>/replies">view replies</a>
+  <% elsif @post.posts.any? && @show_replies %>
+    <% @show_replies = false %>
+    <a class="hide-replies" href="/posts/<%=@post.id%>/replies">hide replies</a>
+    <div class="nested">
+      <% @post.posts.each do |post| %>
+        <% @post = post %>
+        <%= erb :show_post %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+

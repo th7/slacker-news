@@ -1,5 +1,6 @@
+<h3>All Posts</h3>
 <div class="posts"
-  <% Post.all.sort {|a,b| a.updated_at <=> b.updated_at}.each do |post| %>
+  <% Post.where(post_id: nil).sort {|a,b| a.updated_at <=> b.updated_at}.each do |post| %>
     <div>
       <div><a href="posts/<%= post.id %>"><%= post.title %></a></div>
       <div>Posted by: <%= post.user.username %></div><br>
@@ -7,4 +8,4 @@
   <% end %>
 </div>
 
-erb :_edit_post
+<%= erb :_edit_post %>

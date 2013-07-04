@@ -1,6 +1,9 @@
+before do
+  @user = current_user if current_user
+  # redirect '/' unless @user
+end
 
 get '/' do
-  # Look in app/views/index.erb
   erb :index
 end
 
@@ -13,7 +16,6 @@ get '/sign_up' do
 end
 
 post '/sign_in' do
-  p params
   @user = User.authenticate(params[:username], params[:password])
   if @user
     session[:user_id] = @user.id

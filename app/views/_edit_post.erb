@@ -1,10 +1,16 @@
 <form id="edit-post" method="post" action="/posts">
+  <input type="hidden" name="post[user_id]" value="<%= @user.id %>">
+  
+  <% if @post %>
+    <input type="hidden" name="post[post_id]" value="<%= @post.id %>">
+  <% end %>
+
   <label class="label" for="post[title]">Title</label>
   <input type="text" name="post[title]">
   <br>
 
   <label class="label" for="post[text]">Text</label>
-  <input type="password" name="post[text]">
+  <input type="text" name="post[text]">
   <br>
 
   <div class="submit"><input type="submit" value="Create Post"></div>

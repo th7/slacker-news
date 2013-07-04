@@ -1,0 +1,7 @@
+<a href="/posts/<%=@post.id%>/replies">hide replies</a>
+<div class="nested-posts">
+  <% @post.posts.each do |post| %>
+    <% @post = post %>
+    <%= erb :show_post %>
+  <% end %>
+</div>
