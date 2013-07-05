@@ -5,7 +5,6 @@ Handlers = {
       if (jQ.attr('class') == 'reply') {
         toShowId = jQ.next('div').attr('id');
         Handlers.Click.showReply(toShowId);
-        toggleValues(jQ.text, 'reply', 'cancel');
         if (jQ.text() == 'reply') {
           jQ.text('cancel');
         } else {
@@ -21,6 +20,10 @@ Handlers = {
         jQ.text('show replies');
         jQ.removeClass('hide-replies');
         jQ.addClass('get-replies');
+      } else if (jQ.attr('class') == 'get-posts') {
+        url = this.href;
+        event.preventDefault();
+        Handlers.Click.getPosts(url);
       }
     },
 
@@ -30,6 +33,10 @@ Handlers = {
 
     getReplies: function(url) {
       $.get(url, Handlers.Response.replies);
+    },
+
+    getPosts: function(url) {
+      $.get(url, Handlers.Response.posts);
     }
 
   },
@@ -39,6 +46,12 @@ Handlers = {
       newElem = $(data).filter('.posts');
       toUpdateId = newElem.attr('id');
       $(document).find('#' + toUpdateId).html(newElem.html());
+    },
+
+    posts: function(data) {
+      debugger;
+      newElem = $(data).filter('.users');
+      $(document).find('.users').html(newElem.html());
     }
   }
 }

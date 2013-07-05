@@ -1,0 +1,10 @@
+<h3>All Users</h3>
+<div class="users"
+  <% @users.each do |user| %>
+    <div>
+      <div><a href="users/<%= user.id %>"><%= user.username %></a></div>
+    </div>
+  <% end %>
+</div>
+
+<%= erb :_edit_user %>

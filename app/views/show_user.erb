@@ -1,0 +1,20 @@
+<h3><%=@user.username%></h3>
+<div class="users">
+
+  <a class="edit" href="#">edit</a>
+  <div class="edit hidden">
+    <%= erb :_edit_user %>
+  </div>
+
+  <hr>
+
+  <% if @user.posts.any? && !@show_posts %>
+    <a class="get-posts" href="/users/<%=@user.id%>/posts">view posts</a>
+  <% elsif @user.posts.any? && @show_posts %>
+    <a class="hide-posts" href="/users/<%=@user.id%>/posts">hide posts</a>
+      <% @user.posts.each do |post| %>
+        <% @post = post %>
+        <%= erb :show_post %>
+      <% end %>
+  <% end %>
+</div>
